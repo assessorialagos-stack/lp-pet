@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ===== Noite (base da página, escuro azulado da Lagos) ===== */
+  --color-night: #0A0F1C;
+  --color-night-2: #111829;
+  --color-night-3: #19213A;
+  --color-night-line: rgba(255, 255, 255, 0.09);
+  --color-night-text: #A9B0C6;
+  --color-night-muted: #7C849C;
+
+  /* ===== Papel (blocos claros, tom quente de pet) ===== */
+  --color-paper: #F6F3ED;
+  --color-paper-2: #EFEAE1;
+  --color-card: #FFFFFF;
+  --color-line: #E7E2D8;
+  --color-line-strong: #D6CFC2;
+
+  /* ===== Texto ===== */
+  --color-ink: #0B0C14;
+  --color-body: #4A4F63;
+  --color-muted: #80859A;
+
+  /* ===== Azul Lagos (marca) ===== */
+  --color-lagos: #3B6BFF;
+  --color-lagos-600: #2A52CC;
+  --color-lagos-300: #8FB4FF;
+  --color-lagos-100: #DCE6FF;
+  --color-lagos-50: #EEF3FF;
+
+  /* ===== Caramelo (acento quente do mercado pet) ===== */
+  --color-caramel: #F2A93B;
+  --color-caramel-600: #D98E1E;
+  --color-caramel-300: #F8C878;
+  --color-caramel-50: #FFF4E0;
+
+  /* ===== Estados ===== */
+  --color-whatsapp: #25D366;
+  --color-success: #11994A;
+  --color-success-soft: #E8FAEF;
+  --color-danger: #E5484D;
+  --color-danger-soft: #FFF0F0;
+
+  --shadow-soft: 0 1px 2px rgba(16, 24, 40, 0.05), 0 1px 3px rgba(16, 24, 40, 0.06);
+  --shadow-card: 0 12px 32px -12px rgba(16, 24, 40, 0.18), 0 4px 10px -4px rgba(16, 24, 40, 0.06);
+  --shadow-float: 0 30px 60px -20px rgba(5, 10, 30, 0.55), 0 10px 24px -10px rgba(5, 10, 30, 0.3);
+  --shadow-caramel: 0 14px 30px -14px rgba(242, 169, 59, 0.75);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-bob: bob 6s ease-in-out infinite;
+  --animate-ring: ring 2.4s ease-out infinite;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes ring {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(1.5); opacity: 0; }
+  }
+  @keyframes pulse-dot {
+    50% { box-shadow: 0 0 0 7px rgba(47, 208, 122, 0); }
+  }
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 6.5rem;
+    background-color: var(--color-night);
+  }
+
+  body {
+    background-color: var(--color-night);
+    color: var(--color-night-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-caramel-300);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: rgba(242, 169, 59, 0.35);
+  }
+}
+
+@layer utilities {
+  /* Títulos grandes no estilo das referências: peso médio e espaçamento apertado */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+
+  /* Grade fina que some nas bordas (fundo do hero) */
+  .bg-night-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 20%, #000 10%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 55% at 50% 20%, #000 10%, transparent 75%);
+  }
+
+  /* Brilhos das seções escuras: azul Lagos + um toque caramelo */
+  .bg-night-glow {
+    background:
+      radial-gradient(800px 420px at 85% 0%, rgba(59, 107, 255, 0.16), transparent 70%),
+      radial-gradient(600px 400px at 0% 100%, rgba(242, 169, 59, 0.07), transparent 70%);
+  }
+
+  /* Faixas que somem nas laterais */
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  /* Pontilhado da faixa azul de diferencial */
+  .bg-dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+}
+
+/* ===== Mobile / touch: desempenho (mesmo cuidado dos outros sites) ===== */
+@media (max-width: 1024px), (pointer: coarse) {
+  *,
+  *::before,
+  *::after {
+    backdrop-filter: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    width: auto !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 12px;
+    transform: none !important;
+  }
+  .marquee-dup {
+    display: none !important;
+  }
+}
+
+/* Lenis (smooth scroll) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
