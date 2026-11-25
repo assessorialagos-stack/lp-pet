@@ -26,7 +26,7 @@ export function FounderPhoto({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative aspect-[4/5] w-full overflow-hidden rounded-[32px] bg-[radial-gradient(120%_80%_at_50%_100%,#F8C878_0%,#FBE3B8_45%,#FFF6E6_100%)] shadow-card",
+        "relative aspect-[3/4] w-full overflow-hidden rounded-[32px] bg-[radial-gradient(120%_80%_at_50%_100%,#F8C878_0%,#FBE3B8_45%,#FFF6E6_100%)] shadow-card",
         className,
       )}
     >
@@ -43,10 +43,10 @@ export function FounderPhoto({ className }: { className?: string }) {
           </span>
           <strong className="font-display text-xl tracking-tight text-ink">Seu rosto aqui</strong>
           <span className="hidden max-w-[220px] text-[13.5px] leading-snug text-body sm:block">
-            Foto recortada, fundo transparente, proporção 4:5 (ex.: 1200 × 1500 px)
+            Retrato na proporção 3:4 (ex.: 1200 × 1600 px)
           </span>
           <code className="mt-1 rounded-lg border border-caramel/40 bg-white px-2.5 py-1 text-[12.5px] text-caramel-600">
-            public/fundador.png
+            public/fundador.jpg
           </code>
         </div>
       )}
@@ -59,10 +59,7 @@ export function FounderPhoto({ className }: { className?: string }) {
           alt={`${FOUNDER.name}, ${FOUNDER.role}`}
           onLoad={() => setStatus("ok")}
           onError={() => setStatus("missing")}
-          className={cn(
-            "absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain object-bottom",
-            !hasPhoto && "opacity-0",
-          )}
+          className={cn("absolute inset-0 h-full w-full object-cover object-[50%_35%]", !hasPhoto && "opacity-0")}
         />
       )}
     </div>

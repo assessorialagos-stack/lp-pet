@@ -1,5 +1,5 @@
 import { WHATSAPP_DISPLAY, whatsappLink } from "@/app/lib/contact";
-import { CONTACT_EMAIL } from "@/app/lib/site";
+import { WA_MESSAGE } from "@/app/lib/site";
 import { LagosLogo } from "./ui/LagosMark";
 import { container } from "./ui/Section";
 
@@ -39,13 +39,8 @@ export function Footer() {
               <h4 className="mb-4 text-[13px] font-bold uppercase tracking-[0.08em] text-white">Contato</h4>
               <ul className="grid gap-2.5">
                 <li>
-                  <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
+                  <a href={whatsappLink(WA_MESSAGE)} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
                     WhatsApp: {WHATSAPP_DISPLAY}
-                  </a>
-                </li>
-                <li>
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="transition-colors hover:text-white">
-                    {CONTACT_EMAIL}
                   </a>
                 </li>
                 <li>Atendimento para todo o Brasil</li>

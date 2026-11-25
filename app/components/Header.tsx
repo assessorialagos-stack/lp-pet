@@ -25,7 +25,7 @@ export function Header() {
   }, []);
 
   return (
-    <header id="top" className="fixed inset-x-0 top-0 z-50 px-2.5 pt-2.5 sm:px-4 sm:pt-3.5">
+    <header className="fixed inset-x-0 top-0 z-50 px-2.5 pt-2.5 sm:px-4 sm:pt-3.5">
       <div
         className={cn(
           "mx-auto flex h-[64px] max-w-[1240px] items-center justify-between gap-6 rounded-full border pl-5 pr-2 transition-[background-color,border-color,box-shadow] duration-300 sm:h-[68px] sm:pl-6",

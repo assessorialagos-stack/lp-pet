@@ -5,15 +5,14 @@ export const FOUNDER = {
   // Nome que aparece na etiqueta da foto e na assinatura da carta.
   name: "Nome do fundador",
   role: "Fundador da Lagos Assessoria",
-  // Salve a foto em public/fundador.png: PNG recortado, fundo transparente,
-  // proporção 4:5 (ex.: 1200 x 1500 px). Sem o arquivo, aparece o espaço marcado.
-  photo: "/fundador.png",
+  // Foto em public/fundador.jpg (retrato 3:4, preenche a moldura inteira).
+  // Sem o arquivo, aparece o espaço marcado.
+  photo: "/fundador.jpg",
 };
 
-export const CONTACT_EMAIL = "contato@lagosassessoria.com.br";
-
-// Mensagem padrão dos botões de WhatsApp (fora do formulário).
-export const WA_MESSAGE = "Olá! Tenho um negócio pet e quero falar com um especialista da Lagos.";
+// Mensagem de TODOS os botões de WhatsApp da página (fora do formulário).
+export const WA_MESSAGE =
+  "Olá! Vim pela página de marketing para pet shop da Lagos e tenho interesse no diagnóstico gratuito para o meu negócio pet. Pode me ajudar?";
 
 // Valor de entrada da assessoria (mesmo número das outras páginas da Lagos).
 export const PRICE_FROM = "R$ 1.500";

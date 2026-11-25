@@ -22,6 +22,9 @@ import { Footer } from "./components/Footer";
 export default function Home() {
   return (
     <>
+      {/* Âncora do "voltar ao topo": precisa ser um elemento no fluxo da página.
+          O header é fixo, e o navegador não rola até um elemento fixo. */}
+      <div id="top" aria-hidden className="absolute left-0 top-0 h-px w-px" />
       <Header />
       <main>
         <HeroSection />

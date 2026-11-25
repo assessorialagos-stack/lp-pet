@@ -13,10 +13,11 @@ npm run build
 
 | O quê | Onde |
 |---|---|
-| Foto do fundador (PNG recortado, fundo transparente, 4:5) | `public/fundador.png` |
 | Nome do fundador | `app/lib/site.ts` (`FOUNDER.name`) |
 | Cases do mercado pet, quando houver | `app/components/ResultsSection.tsx` (hoje usa os cases reais de outros segmentos, sinalizados na página) |
 | Número do WhatsApp, se mudar | `app/lib/contact.ts` |
+| Mensagem dos botões de WhatsApp | `app/lib/site.ts` (`WA_MESSAGE`) |
+| Foto do fundador (retrato 3:4) | `public/fundador.jpg` |
 
 Os números dentro dos mockups (agenda, painel, pacote mensal) são ilustrativos e estão marcados como "Ilustrativo" na página.
 

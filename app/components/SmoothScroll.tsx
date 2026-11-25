@@ -38,6 +38,11 @@ export function SmoothScroll() {
       if (!anchor) return;
       const hash = anchor.getAttribute("href");
       if (!hash || hash === "#") return;
+      if (hash === "#top") {
+        e.preventDefault();
+        lenis.scrollTo(0);
+        return;
+      }
       const el = document.querySelector(hash);
       if (!el) return;
       e.preventDefault();
