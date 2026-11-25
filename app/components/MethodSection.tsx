@@ -32,7 +32,7 @@ export function MethodSection() {
             <Reveal key={s.n} delay={i * 0.07} className={cn("h-full", base && "sm:col-span-2 lg:col-span-1")}>
               <article
                 className={cn(
-                  "flex h-full flex-col rounded-[28px] border p-6 lg:min-h-[300px]",
+                  "@container flex h-full flex-col rounded-[28px] border p-6 lg:min-h-[300px]",
                   base ? "border-caramel bg-caramel text-ink" : "border-night-line bg-night-2",
                 )}
               >
@@ -49,7 +49,9 @@ export function MethodSection() {
                   </span>
                   <h3
                     className={cn(
-                      "mt-1.5 text-[1.65rem] font-semibold leading-none tracking-[-0.035em] lg:text-[length:clamp(1.2rem,1.65vw,1.65rem)]",
+                      // Fonte medida pela largura do card: "Agendamento" (a palavra mais longa)
+                      // ocupa ~6x o tamanho da fonte; 13cqw deixa folga e o máximo é 1,5rem.
+                      "mt-1.5 text-[length:clamp(1.05rem,13cqw,1.5rem)] font-semibold leading-none tracking-[-0.035em]",
                       base ? "text-ink" : "text-white",
                     )}
                   >

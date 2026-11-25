@@ -16,7 +16,7 @@ export function HeroSection() {
         className="pointer-events-none absolute left-1/2 top-[-260px] h-[720px] w-[1100px] -translate-x-1/2 bg-[radial-gradient(closest-side,rgba(59,107,255,0.22),transparent)]"
       />
 
-      <div className={cn(container, "z-[1] text-center")}>
+      <div className={cn(container, "@container z-[1] text-center")}>
         <Reveal>
           <span className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] py-1.5 pl-1.5 pr-4 text-[13.5px] font-medium text-night-text">
             <span className="grid h-7 w-7 place-items-center rounded-full bg-caramel text-ink">
@@ -27,9 +27,11 @@ export function HeroSection() {
         </Reveal>
 
         <Reveal delay={0.06}>
-          {/* Sempre duas linhas: cada frase não quebra, e a fonte acompanha a largura da tela
-              (cerca de 10,8 vezes o tamanho da fonte cabe na linha mais longa). */}
-          <h1 className="display mx-auto mt-7 text-[length:clamp(1.9rem,calc((100vw_-_40px)/10.8),6.6rem)] leading-[1] text-white">
+          {/* Sempre duas linhas: cada frase não quebra, e a fonte é medida pela largura do
+              bloco (cqw). A linha mais longa ocupa ~9,8x o tamanho da fonte; 8,6cqw deixa
+              ~15% de folga para navegadores que desenham o texto mais largo. Se uma linha
+              estourasse, ela encostaria na esquerda e perderia a centralização. */}
+          <h1 className="display mx-auto mt-7 text-[length:clamp(1.75rem,8.6cqw,6rem)] leading-[1] text-white">
             <span className="block whitespace-nowrap">Mais tutores na agenda.</span>
             <em className="block whitespace-nowrap font-semibold italic tracking-[-0.05em] text-caramel">E voltando todo mês.</em>
           </h1>
