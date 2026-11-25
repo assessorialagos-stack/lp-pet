@@ -32,12 +32,13 @@ export function MethodSection() {
             <Reveal key={s.n} delay={i * 0.07} className={cn("h-full", base && "sm:col-span-2 lg:col-span-1")}>
               <article
                 className={cn(
-                  "flex h-full flex-col rounded-[28px] border p-6 sm:min-h-[250px] lg:min-h-[320px]",
+                  "flex h-full flex-col rounded-[28px] border p-6 lg:min-h-[300px]",
                   base ? "border-caramel bg-caramel text-ink" : "border-night-line bg-night-2",
                 )}
               >
                 <span className={cn("font-mono text-[12.5px]", base ? "text-ink/70" : "text-lagos-300")}>{s.n}</span>
-                <div className="mt-auto pt-6 sm:pt-10">
+                {/* Alinhado pelo topo: rótulo, título e texto começam na mesma altura em todos os cards. */}
+                <div className="pt-8 sm:pt-16">
                   <span
                     className={cn(
                       "text-[12px] font-bold uppercase tracking-[0.08em]",
@@ -48,7 +49,7 @@ export function MethodSection() {
                   </span>
                   <h3
                     className={cn(
-                      "mt-1.5 text-[1.65rem] font-semibold leading-none tracking-[-0.035em]",
+                      "mt-1.5 text-[1.65rem] font-semibold leading-none tracking-[-0.035em] lg:text-[length:clamp(1.2rem,1.65vw,1.65rem)]",
                       base ? "text-ink" : "text-white",
                     )}
                   >

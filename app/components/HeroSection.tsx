@@ -27,9 +27,11 @@ export function HeroSection() {
         </Reveal>
 
         <Reveal delay={0.06}>
-          <h1 className="display mx-auto mt-7 max-w-[1000px] text-[clamp(2.75rem,7.6vw,6.3rem)] leading-[0.96] text-white">
-            Mais tutores na agenda.{" "}
-            <em className="block font-semibold italic tracking-[-0.05em] text-caramel">E voltando todo mês.</em>
+          {/* Sempre duas linhas: cada frase não quebra, e a fonte acompanha a largura da tela
+              (cerca de 10,8 vezes o tamanho da fonte cabe na linha mais longa). */}
+          <h1 className="display mx-auto mt-7 text-[length:clamp(1.9rem,calc((100vw_-_40px)/10.8),6.6rem)] leading-[1] text-white">
+            <span className="block whitespace-nowrap">Mais tutores na agenda.</span>
+            <em className="block whitespace-nowrap font-semibold italic tracking-[-0.05em] text-caramel">E voltando todo mês.</em>
           </h1>
         </Reveal>
 
