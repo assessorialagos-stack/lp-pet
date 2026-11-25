@@ -104,13 +104,14 @@ export async function POST(request: Request) {
     ...(process.env.LEAD_CC ? { _cc: process.env.LEAD_CC } : {}),
 
     Nome: data.nome || "",
-    WhatsApp: data.whatsapp || "",
+    // O formulário não pede telefone: o lead continua a conversa no WhatsApp,
+    // e o número dele aparece lá.
     "Negócio (nome ou @)": data.negocio || "",
     "Cidade/Estado": data.cidade || "",
     "Tipo de negócio": data.tipo || "",
     "Faturamento mensal": data.faturamento || "",
     Objetivo: data.objetivo || "",
-    "Investe a partir de R$ 1.500/mês em anúncios": data.investimento || "",
+    "Consegue investir a partir de R$ 2.500/mês": data.investimento || "",
     "Botão clicado": data.cta || "",
     "Data/hora": formatarDataHora(data.data_hora),
     Origem: data.pagina_origem || "/",
@@ -127,7 +128,6 @@ export async function POST(request: Request) {
     ? sendLeadToMeta(request, {
         eventId: data.event_id,
         nome: data.nome,
-        whatsapp: data.whatsapp,
         sourceUrl: data.pagina_url,
       })
     : Promise.resolve({ sent: false, reason: "sem event_id" });

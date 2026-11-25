@@ -77,7 +77,6 @@ export function LeadModalProvider({ children }: { children: React.ReactNode }) {
 
 type LeadData = {
   nome: string;
-  whatsapp: string;
   negocio: string;
   cidade: string;
   tipo: string;
@@ -88,7 +87,6 @@ type LeadData = {
 
 const empty: LeadData = {
   nome: "",
-  whatsapp: "",
   negocio: "",
   cidade: "",
   tipo: "",
@@ -117,7 +115,6 @@ const INVESTIMENTOS = ["Sim", "Não", "Quero entender melhor"];
 
 const fieldOrder: (keyof LeadData)[] = [
   "nome",
-  "whatsapp",
   "negocio",
   "cidade",
   "tipo",
@@ -126,12 +123,8 @@ const fieldOrder: (keyof LeadData)[] = [
   "investimento",
 ];
 
-function maskPhone(value: string) {
-  let v = value.replace(/\D/g, "").slice(0, 11);
-  v = v.replace(/^(\d{2})(\d)/, "($1) $2");
-  v = v.replace(/(\d)(\d{4})$/, "$1-$2");
-  return v;
-}
+// Texto da pergunta de investimento (formulário, WhatsApp e e-mail usam o mesmo valor).
+const INVESTIMENTO_MIN = "R$ 2.500";
 
 function buildTracking() {
   const p = new URLSearchParams(window.location.search);
@@ -153,13 +146,12 @@ function buildWhatsAppMessage(d: LeadData) {
     "Olá! Quero um diagnóstico gratuito para o meu negócio pet.",
     "",
     `*Nome:* ${d.nome}`,
-    `*WhatsApp:* ${d.whatsapp}`,
     `*Negócio:* ${d.negocio}`,
     `*Cidade:* ${d.cidade}`,
     `*Tipo de negócio:* ${d.tipo}`,
     `*Faturamento mensal:* ${d.faturamento}`,
     `*Objetivo:* ${d.objetivo}`,
-    `*Verba de anúncios a partir de R$ 1.500/mês:* ${d.investimento}`,
+    `*Consegue investir a partir de ${INVESTIMENTO_MIN}/mês:* ${d.investimento}`,
   ].join("\n");
 }
 
@@ -181,7 +173,7 @@ function LeadDialog({ origem, onClose }: { origem: string; onClose: () => void }
   }, []);
 
   const set = (name: keyof LeadData, value: string) => {
-    setData((d) => ({ ...d, [name]: name === "whatsapp" ? maskPhone(value) : value }));
+    setData((d) => ({ ...d, [name]: value }));
     setErrors((e) => ({ ...e, [name]: false }));
   };
 
@@ -190,8 +182,7 @@ function LeadDialog({ origem, onClose }: { origem: string; onClose: () => void }
 
     const next: Partial<Record<keyof LeadData, boolean>> = {};
     for (const k of fieldOrder) {
-      const v = data[k].trim();
-      if (!v || (k === "whatsapp" && v.replace(/\D/g, "").length < 10)) next[k] = true;
+      if (!data[k].trim()) next[k] = true;
     }
     setErrors(next);
     const firstErr = fieldOrder.find((k) => next[k]);
@@ -269,35 +260,19 @@ function LeadDialog({ origem, onClose }: { origem: string; onClose: () => void }
         </div>
 
         <form onSubmit={handleSubmit} noValidate className="grid gap-3.5 px-[22px] pb-[26px] pt-[18px] sm:px-[30px] sm:pb-[30px] sm:pt-[22px]">
-          <div className="grid gap-1.5" data-field="nome">
-            <label htmlFor="f-nome" className={labelCls}>
-              Nome completo <span className="text-caramel-600">*</span>
-            </label>
-            <input
-              ref={firstRef}
-              id="f-nome"
-              autoComplete="name"
-              placeholder="Como podemos te chamar?"
-              value={data.nome}
-              onChange={(e) => set("nome", e.target.value)}
-              className={cn(inputCls, errors.nome && errCls)}
-            />
-          </div>
-
           <div className="grid gap-3 sm:grid-cols-2">
-            <div className="grid gap-1.5" data-field="whatsapp">
-              <label htmlFor="f-wa" className={labelCls}>
-                WhatsApp <span className="text-caramel-600">*</span>
+            <div className="grid gap-1.5" data-field="nome">
+              <label htmlFor="f-nome" className={labelCls}>
+                Nome completo <span className="text-caramel-600">*</span>
               </label>
               <input
-                id="f-wa"
-                type="tel"
-                inputMode="tel"
-                autoComplete="tel"
-                placeholder="(00) 00000-0000"
-                value={data.whatsapp}
-                onChange={(e) => set("whatsapp", e.target.value)}
-                className={cn(inputCls, errors.whatsapp && errCls)}
+                ref={firstRef}
+                id="f-nome"
+                autoComplete="name"
+                placeholder="Como podemos te chamar?"
+                value={data.nome}
+                onChange={(e) => set("nome", e.target.value)}
+                className={cn(inputCls, errors.nome && errCls)}
               />
             </div>
             <div className="grid gap-1.5" data-field="negocio">
@@ -335,7 +310,7 @@ function LeadDialog({ origem, onClose }: { origem: string; onClose: () => void }
 
           <Options label="Principal objetivo agora" name="objetivo" options={OBJETIVOS} value={data.objetivo} error={errors.objetivo} onChange={set} />
           <Options
-            label="Você consegue investir a partir de R$ 1.500/mês em anúncios, além da assessoria?"
+            label={`Você consegue investir a partir de ${INVESTIMENTO_MIN}/mês?`}
             name="investimento"
             options={INVESTIMENTOS}
             value={data.investimento}

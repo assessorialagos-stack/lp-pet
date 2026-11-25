@@ -3,7 +3,7 @@
 
 export const FOUNDER = {
   // Nome que aparece na etiqueta da foto e na assinatura da carta.
-  name: "Nome do fundador",
+  name: "Alexandre Cordeiro",
   role: "Fundador da Lagos Assessoria",
   // Foto em public/fundador.jpg (retrato 3:4, preenche a moldura inteira).
   // Sem o arquivo, aparece o espaço marcado.
