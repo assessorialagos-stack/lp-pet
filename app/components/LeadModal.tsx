@@ -104,11 +104,13 @@ const TIPOS = [
   "Outro negócio pet",
 ];
 const FATURAMENTOS = [
-  "Até R$ 20 mil",
-  "R$ 20 mil a R$ 50 mil",
-  "R$ 50 mil a R$ 100 mil",
-  "R$ 100 mil a R$ 300 mil",
-  "Acima de R$ 300 mil",
+  "Projeto novo",
+  "De R$ 15 mil a R$ 30 mil",
+  "De R$ 30 mil a R$ 60 mil",
+  "De R$ 60 mil a R$ 90 mil",
+  "De R$ 90 mil a R$ 150 mil",
+  "De R$ 150 mil a R$ 220 mil",
+  "Faturo acima de R$ 220 mil",
 ];
 const OBJETIVOS = ["Encher a agenda", "Fazer o tutor voltar", "Aparecer no Google", "Organizar o WhatsApp"];
 const INVESTIMENTOS = ["Sim", "Não", "Quero entender melhor"];
